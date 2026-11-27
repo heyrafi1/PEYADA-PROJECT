@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rider profile - Peyada</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    Peyada
+    <a href="rider-dashboard.html">Dashboard</a>
+    <a href="rider-profile.html">Profile</a>
+    <a href="rider-earnings.html">Earnings</a>
+    <a href="change-password.html">Password</a>
+    <span>Rider</span>
+    <a href="login.html">Log out</a>
+  </div>
+
+  <div class="page">
+    <h1>Rider profile</h1>
+
+    <div class="status-box">
+      <p>Name: <b id="sumName">Rahim Uddin</b></p>
+      <p>Mobile: <b id="sumPhone">01712345678</b></p>
+      <p>Vehicle: <b id="sumVehicle">Motorbike</b></p>
+      <p>Number plate: <b id="sumPlate">DHAKA-METRO-HA-12-3456</b></p>
+    </div>
+
+    <div id="profileMessage" class="message"></div>
+
+    <!-- form 3: update profile -->
+    <form id="profileForm" action="#" method="post" onsubmit="return validateProfile()" novalidate>
+      <fieldset>
+        <legend>Update profile</legend>
+
+        <div class="form-row">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name">
+          <span class="error" id="nameError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Mobile</label>
+          <input type="text" id="phone" name="phone" maxlength="11" placeholder="01712345678">
+          <span class="error" id="phoneError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="vehicle">Vehicle</label>
+          <select id="vehicle" name="vehicle">
+            <option value="">-- Select --</option>
+            <option value="Bicycle">Bicycle</option>
+            <option value="Motorbike">Motorbike</option>
+            <option value="Car">Car</option>
+          </select>
+          <span class="error" id="vehicleError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="plate">Number plate (not needed for a bicycle)</label>
+          <input type="text" id="plate" name="plate">
+          <span class="error" id="plateError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="bio">About you (optional)</label>
+          <textarea id="bio" name="bio" rows="3" onkeyup="showCount('bio', 'bioCount', 150)"></textarea>
+          <span class="counter" id="bioCount">0 / 150</span>
+          <span class="error" id="bioError"></span>
+        </div>
+
+        <div class="form-row">
+          <input type="checkbox" id="license" name="license">
+          <label for="license" class="inline">My documents are valid</label>
+          <span class="error" id="licenseError"></span>
+        </div>
+
+        <input type="submit" value="Save profile" class="btn">
+        <input type="reset" value="Reset" class="btn btn-grey">
+      </fieldset>
+    </form>
+  </div>
+
+  <script src="js/validate.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/rider.js"></script>
+</body>
+</html>

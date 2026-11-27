@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings - Peyada</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    Peyada
+    <a href="rider-dashboard.html">Dashboard</a>
+    <a href="rider-profile.html">Profile</a>
+    <a href="rider-earnings.html">Earnings</a>
+    <a href="change-password.html">Password</a>
+    <span>Rider</span>
+    <a href="login.html">Log out</a>
+  </div>
+
+  <div class="page">
+    <h1>Earnings</h1>
+
+    <div class="stat">
+      <h2 id="balanceText">Tk 0</h2>
+      <p>Balance</p>
+    </div>
+
+    <div id="cashoutMessage" class="message"></div>
+
+    <!-- form 4: cash out -->
+    <form id="cashoutForm" action="#" method="post" onsubmit="return validateCashout()" novalidate>
+      <fieldset>
+        <legend>Cash out</legend>
+
+        <div class="form-row">
+          <label for="method">Method</label>
+          <select id="method" name="method" onchange="changeMethod()">
+            <option value="">-- Select --</option>
+            <option value="bKash">bKash</option>
+            <option value="Nagad">Nagad</option>
+            <option value="Bank">Bank</option>
+          </select>
+          <span class="error" id="methodError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="account" id="accountLabel">Account number</label>
+          <input type="text" id="account" name="account">
+          <span class="error" id="accountError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="amount">Amount (Tk, minimum 100)</label>
+          <input type="number" id="amount" name="amount">
+          <span class="error" id="amountError"></span>
+        </div>
+
+        <div class="form-row">
+          <input type="checkbox" id="agree" name="agree">
+          <label for="agree" class="inline">The account number is correct</label>
+          <span class="error" id="agreeError"></span>
+        </div>
+
+        <input type="submit" value="Request cash out" class="btn">
+      </fieldset>
+    </form>
+
+    <h2>Cash out history</h2>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Method</th><th>Amount</th></tr>
+      </thead>
+      <tbody id="historyBody"></tbody>
+    </table>
+  </div>
+
+  <script src="js/validate.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/rider.js"></script>
+  <script>
+    showBalance();
+  </script>
+</body>
+</html>
