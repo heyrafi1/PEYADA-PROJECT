@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rider dashboard - Peyada</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    Peyada
+    <a href="rider-dashboard.html">Dashboard</a>
+    <a href="rider-profile.html">Profile</a>
+    <a href="rider-earnings.html">Earnings</a>
+    <a href="change-password.html">Password</a>
+    <span>Rider</span>
+    <a href="login.html">Log out</a>
+  </div>
+
+  <div class="page">
+    <h1>Rider dashboard</h1>
+
+    <div class="stat">
+      <h2 id="deliveryCount">0</h2>
+      <p>Deliveries</p>
+    </div>
+    <div class="stat">
+      <h2 id="earnedText">Tk 0</h2>
+      <p>Earned</p>
+    </div>
+    <div class="stat">
+      <h2 id="statusText">Offline</h2>
+      <p>Status</p>
+    </div>
+
+    <div id="onlineMessage" class="message"></div>
+
+    <!-- form 1: go online -->
+    <form id="onlineForm" action="#" method="post" onsubmit="return validateOnline()" novalidate>
+      <fieldset>
+        <legend>Go online</legend>
+
+        <div class="form-row">
+          <label for="area">Your area</label>
+          <select id="area" name="area">
+            <option value="">-- Select --</option>
+            <option value="Gazipur">Gazipur</option>
+            <option value="Dhaka">Dhaka</option>
+          </select>
+          <span class="error" id="areaError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="vehicle">Vehicle today</label>
+          <select id="vehicle" name="vehicle">
+            <option value="">-- Select --</option>
+            <option value="Bicycle">Bicycle</option>
+            <option value="Motorbike">Motorbike</option>
+            <option value="Car">Car</option>
+          </select>
+          <span class="error" id="vehicleError"></span>
+        </div>
+
+        <div class="form-row">
+          <input type="checkbox" id="confirm" name="confirm">
+          <label for="confirm" class="inline">I am ready to take orders</label>
+          <span class="error" id="confirmError"></span>
+        </div>
+
+        <input type="submit" value="Go online" class="btn btn-green">
+        <button type="button" id="goOffline" class="btn btn-grey hidden" onclick="goOffline()">Go offline</button>
+      </fieldset>
+    </form>
+
+    <h2>Active order</h2>
+    <div id="activeBox"></div>
+
+    <h2>Open orders</h2>
+
+    <!-- form 2: find open orders -->
+    <form id="searchForm" action="#" method="post" onsubmit="return validateSearch()" novalidate>
+      <fieldset>
+        <legend>Find orders</legend>
+
+        <div class="form-row">
+          <label for="searchArea">Area</label>
+          <select id="searchArea" name="searchArea">
+            <option value="all">All areas</option>
+            <option value="Gazipur">Gazipur</option>
+            <option value="Dhaka">Dhaka</option>
+          </select>
+          <span class="error" id="searchAreaError"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="searchType">Type</label>
+          <select id="searchType" name="searchType">
+            <option value="all">All types</option>
+            <option value="Parcel">Parcel</option>
+            <option value="Food">Food</option>
+            <option value="Document">Document</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="maxKm">Maximum distance (km, optional)</label>
+          <input type="number" id="maxKm" name="maxKm" step="0.5">
+          <span class="error" id="maxKmError"></span>
+        </div>
+
+        <input type="submit" value="Search" class="btn">
+      </fieldset>
+    </form>
+
+    <div id="orderList"></div>
+  </div>
+
+  <script src="js/validate.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/rider.js"></script>
+  <script>
+    showStats();
+    drawActive();
+    showOrders(openOrders);
+  </script>
+</body>
+</html>
